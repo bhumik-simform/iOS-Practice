@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Mdz-1M-gLa">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Map view configurations" minToolsVersion="14.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Item 3-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController id="Y6W-OH-hqX" userLabel="Item 3" customClass="CountryMapViewController" customModule="Demo_UI_Elements_2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zlg-gZ-1MW">
+                                <rect key="frame" x="0.0" y="59" width="393" height="710"/>
+                                <standardMapConfiguration key="preferredConfiguration"/>
+                            </mapView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="zlg-gZ-1MW" secondAttribute="bottom" id="0LV-2q-Z9H"/>
+                            <constraint firstItem="zlg-gZ-1MW" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="UI2-ur-CYV"/>
+                            <constraint firstItem="zlg-gZ-1MW" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="jQI-if-Xzh"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="zlg-gZ-1MW" secondAttribute="trailing" id="lui-N3-HRs"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Country On Map" image="map" catalog="system" id="wcw-og-z5b"/>
+                    <connections>
+                        <outlet property="countryMapView" destination="zlg-gZ-1MW" id="pwT-3A-FRH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2355" y="396"/>
+        </scene>
+        <!--Country Info-->
+        <scene sceneID="32j-bB-gZf">
+            <objects>
+                <viewController id="18W-Uv-QWr" customClass="CountryInfoViewController" customModule="Demo_UI_Elements_2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Brg-eP-50n">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fLp-vm-Va0">
+                                <rect key="frame" x="0.0" y="59" width="393" height="710"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="I3l-E2-z3k">
+                                <rect key="frame" x="178" y="407.66666666666669" width="37" height="37"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="BUD-mn-aRU"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="BUD-mn-aRU" firstAttribute="bottom" secondItem="fLp-vm-Va0" secondAttribute="bottom" id="0hi-iP-4ca"/>
+                            <constraint firstItem="BUD-mn-aRU" firstAttribute="trailing" secondItem="fLp-vm-Va0" secondAttribute="trailing" id="Etz-Yr-CSF"/>
+                            <constraint firstItem="I3l-E2-z3k" firstAttribute="centerY" secondItem="Brg-eP-50n" secondAttribute="centerY" id="QQ2-WF-9bu"/>
+                            <constraint firstItem="fLp-vm-Va0" firstAttribute="leading" secondItem="BUD-mn-aRU" secondAttribute="leading" id="Smq-GI-OFg"/>
+                            <constraint firstItem="fLp-vm-Va0" firstAttribute="top" secondItem="BUD-mn-aRU" secondAttribute="top" id="i4H-m6-Nmr"/>
+                            <constraint firstItem="I3l-E2-z3k" firstAttribute="centerX" secondItem="Brg-eP-50n" secondAttribute="centerX" id="n2A-am-ODl"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Country Info" image="info" catalog="system" id="wPj-bC-aTg"/>
+                    <connections>
+                        <outlet property="countryInfoWebView" destination="fLp-vm-Va0" id="GrW-20-LZF"/>
+                        <outlet property="webLoadActivitySpinner" destination="I3l-E2-z3k" id="31Q-zW-1kN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dJb-lN-pHm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3108" y="-30"/>
+        </scene>
+        <!--Pick Country-->
+        <scene sceneID="Ldl-vt-fzt">
+            <objects>
+                <viewController id="SWE-zV-tHY" customClass="CountryChooseViewController" customModule="Demo_UI_Elements_2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Inl-Vz-Tmk">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DBJ-ye-LIx">
+                                <rect key="frame" x="37" y="318" width="320" height="216"/>
+                            </pickerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xwb-eL-Q9e">
+                                <rect key="frame" x="80" y="639" width="233" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Choose Country" cornerStyle="dynamic"/>
+                                <connections>
+                                    <action selector="ChooseCountry:" destination="SWE-zV-tHY" eventType="touchUpInside" id="B5O-9r-sX2"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="tGR-rC-Bh3"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Xwb-eL-Q9e" firstAttribute="top" secondItem="DBJ-ye-LIx" secondAttribute="bottom" constant="105" id="CyI-6T-NsA"/>
+                            <constraint firstItem="DBJ-ye-LIx" firstAttribute="centerY" secondItem="Inl-Vz-Tmk" secondAttribute="centerY" id="Whp-X4-bKa"/>
+                            <constraint firstItem="DBJ-ye-LIx" firstAttribute="centerX" secondItem="Inl-Vz-Tmk" secondAttribute="centerX" id="b7v-Ol-j8x"/>
+                            <constraint firstItem="tGR-rC-Bh3" firstAttribute="trailing" secondItem="Xwb-eL-Q9e" secondAttribute="trailing" constant="80" id="rS6-FG-yS8"/>
+                            <constraint firstItem="Xwb-eL-Q9e" firstAttribute="leading" secondItem="tGR-rC-Bh3" secondAttribute="leading" constant="80" id="rX8-dc-AI8"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Pick Country" image="checkmark.rectangle" catalog="system" id="mXF-Gz-aiT"/>
+                    <connections>
+                        <outlet property="countryPicker" destination="DBJ-ye-LIx" id="XWH-sL-0Yp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hBV-VK-7C0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2356" y="-420"/>
+        </scene>
+        <!--Country Tab Bar-->
+        <scene sceneID="zPC-mC-oiX">
+            <objects>
+                <tabBarController id="Mdz-1M-gLa" customClass="CountryTabBar" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cl9-i7-1gO">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="SWE-zV-tHY" kind="relationship" relationship="viewControllers" id="YSW-FF-kbk"/>
+                        <segue destination="18W-Uv-QWr" kind="relationship" relationship="viewControllers" id="eg2-js-boM"/>
+                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="viewControllers" id="4vX-1l-vzy"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mjz-WQ-puK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="847" y="-30"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="checkmark.rectangle" catalog="system" width="128" height="93"/>
+        <image name="info" catalog="system" width="93" height="128"/>
+        <image name="map" catalog="system" width="128" height="112"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
