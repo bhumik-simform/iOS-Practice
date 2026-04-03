@@ -7,13 +7,16 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class HomeVC: UIViewController {
+    var details = ""
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(details)
         // Do any additional setup after loading the view.
     }
 
-
+    @IBAction func goToHomeVC(_ unWindSeague: UIStoryboardSegue) {
+        
+    }
 }
 
