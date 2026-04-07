@@ -2,31 +2,41 @@
 //  FourthViewController.swift
 //  03(D)-ui-navigation-controller-TE-T470
 //
-//  Created by Bhumik Poshiya on 06/04/26.
+//  Created by Bhumik Poshiya on 07/04/26.
 //
 
 import UIKit
-
+protocol MessageDelegate {
+    func didTypeReply(text: String)
+}
 class FourthViewController: UIViewController {
 
+    var delegate: MessageDelegate?
+    @IBOutlet weak var dataTextField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        dataTextField.delegate = self
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func goToOrangeVCClicked(_ sender: UIButton) {
-        if let viewControllers = self.navigationController?.viewControllers {
-            for viewController in viewControllers {
-                if viewController.isKind(of: SecondViewController.self) {
-                    navigationController?.popToViewController(viewController, animated: true)
-                    break
-                }
-            }
-        }
-    }
     
-    @IBAction func goToRootVC(_ sender: UIButton) {
-        navigationController?.popToRootViewController(animated: true)
+}
+
+extension FourthViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+
+        if let inputText = textField.text {
+            delegate?.didTypeReply(text: inputText)
+            self.navigationController?.popViewController(animated: true)
+        }
+       
+        return true
     }
 }
+
+
+/*if let destinationVC = UIStoryboard(name: "ProgNav", bundle: nil).instantiateViewController(withIdentifier: "FinalViewController") as? FinalViewController  {
+    destinationVC.showData = textField.text
+    self.present(destinationVC, animated: true, completion: nil)
+}*/
