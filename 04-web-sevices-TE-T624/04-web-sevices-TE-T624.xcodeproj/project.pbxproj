@@ -15,16 +15,30 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
+				"Notes For Basics/JsonParsing.txt",
+				"Notes For Basics/Student .txt",
 			);
 			target = 495D3DF52FCE864A00E81AC9 /* 04-web-sevices-TE-T624 */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+		495D3E182FCEC26500E81AC9 /* Exceptions for "04-web-sevices-TE-T624" folder in "Compile Sources" phase from "04-web-sevices-TE-T624" target */ = {
+			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
+			buildPhase = 495D3DF22FCE864A00E81AC9 /* Sources */;
+			membershipExceptions = (
+				"Notes For Basics/JsonParsing.txt",
+				"Notes For Basics/Student .txt",
+			);
+		};
+/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		495D3DF82FCE864A00E81AC9 /* 04-web-sevices-TE-T624 */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				495D3E082FCE864B00E81AC9 /* Exceptions for "04-web-sevices-TE-T624" folder in "04-web-sevices-TE-T624" target */,
+				495D3E182FCEC26500E81AC9 /* Exceptions for "04-web-sevices-TE-T624" folder in "Compile Sources" phase from "04-web-sevices-TE-T624" target */,
 			);
 			path = "04-web-sevices-TE-T624";
 			sourceTree = "<group>";

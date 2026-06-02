@@ -1,0 +1,50 @@
+ 
+struct User {
+    var userId: Int
+    var id: Int
+    var title: String
+    var completed: Bool
+    
+    init(_ dict: [String: Any]) {
+        self.userId = dict["userId"] as? Int ?? 0
+        self.id = dict["userId"] as? Int ?? 0
+        self.title = dict["userId"] as? String ?? ""
+        self.completed = dict["userId"] as? Bool ?? false
+    }
+}
+
+
+
+var model = [User]()
+        
+        guard
+            let url = URL(string: "https://jsonplaceholder.typicode.com/todos")
+        else { return }
+
+        let _: Void = URLSession.shared.dataTask(with: url) {
+            (data, response, error) in
+            guard let dataResponse = data, error == nil else {
+                print(error?.localizedDescription ?? "Responce error")
+                return
+            }
+
+            do {
+                let jsonresponce = try JSONSerialization.jsonObject(
+                    with: dataResponse, options: [])
+                print(jsonresponce)
+
+                guard let jsonArray = jsonresponce as? [[String: Any]] else {
+                    return
+                }
+                
+                
+                for user in jsonArray {
+                    model.append(User(user))
+                }
+                
+                
+                
+            } catch let parsingError {
+                print("Error", parsingError)
+            }
+        }.resume()

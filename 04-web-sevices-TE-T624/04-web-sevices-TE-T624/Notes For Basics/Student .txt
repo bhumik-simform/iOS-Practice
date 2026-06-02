@@ -1,0 +1,78 @@
+//
+//  Student 2.swift
+//  04-web-sevices-TE-T624
+//
+//  Created by Bhumik Poshiya on 02/06/26.
+//
+
+
+//
+//  Student.swift
+//  04-web-sevices-TE-T624
+//
+//  Created by Bhumik Poshiya on 02/06/26.
+//
+
+/*
+ {
+   "branch": {
+     "subject": 5,
+     "total_students": 110,
+     "total_books": 150
+   },
+   "Subject": [
+     {
+       "subject_id": 301,
+       "name": "EMT",
+       "pratical": false,
+       "pratical_days": [
+         "Monday",
+         "Friday"
+       ]
+     },
+     {
+       "subject_id": 302,
+       "name": "Network Analysis",
+       "pratical": true,
+       "pratical_days": [
+         "Tuesday",
+         "Thursday"
+       ]
+     }
+   ]
+ }
+ */
+
+
+struct Student: Codable {
+    struct Branch: Codable {
+        let subject: Int
+        let totalStudents: Int
+        let totalBooks: Int
+        
+        enum CodingKeys: String, CodingKey {
+            case subject
+            case totalStudents = "total_students"
+            case totalBooks = "total_books"
+        }
+    }
+    
+    
+    struct Subject: Codable {
+        let subjectId: Int
+        let name: String
+        let practical: Bool
+        let practicalDays: [String]
+        
+        enum CodingKeys: String, CodingKey {
+            case subjectId = "subject_id"
+            case name
+            case practical
+            case practicalDays = "practical_days"
+        }
+    }
+    
+    
+    let branch: Branch
+    let subjects: [Subject]
+}
