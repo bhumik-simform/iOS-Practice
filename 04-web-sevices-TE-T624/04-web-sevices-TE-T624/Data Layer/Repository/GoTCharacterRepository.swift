@@ -9,8 +9,8 @@ final class GoTCharacterRepository {
     private let apiService = GoTCharacterAPIService()
     
     func getCharacters(
-        compltion: @escaping (Result<[GoTCharacter],Error>) -> Void
+        compeltion: @escaping (Result<[GoTCharacter],Error>) -> Void
     ) {
-        apiService.fetchCharacters(completion: compltion)
+        apiService.fetchCharacters(completion: compeltion)
     }
 }
