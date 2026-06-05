@@ -24,4 +24,8 @@ final class CurdRepository {
         return try await apiService.updateUser(updatedUser: updatedUser)
         
     }
-}
+    
+    func deleteUser(with userId: Int) async throws {
+        try await apiService.deleteUser(with: userId)
+    }
+ }

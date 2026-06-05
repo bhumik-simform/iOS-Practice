@@ -67,11 +67,32 @@ class CurdViewModel {
                 let updatedUser = try await repository.updateUser(
                     newUser: updatedUser)
 
-                let originalUserIndex = self.userList.firstIndex {
-                    $0.id == updatedUser.id
-                } ?? -1
-                
+                let originalUserIndex =
+                    self.userList.firstIndex {
+                        $0.id == updatedUser.id
+                    } ?? -1
+
                 self.userList[originalUserIndex] = updatedUser
+                self.reloadData?()
+
+            } catch let error {
+                print(error)
+            }
+
+        }
+
+    }
+
+    func deleteUser(userId: Int) {
+
+        Task {
+
+            do {
+
+                try await repository.deleteUser(with: userId)
+                self.userList.removeAll {
+                    $0.id == userId
+                }
                 self.reloadData?()
 
             } catch let error {

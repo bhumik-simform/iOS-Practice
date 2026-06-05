@@ -78,4 +78,26 @@ final class CurdAPISevice {
         return try JSONDecoder().decode(User.self, from: data)
         
     }
+    
+    func deleteUser(with userId: Int) async throws {
+        
+        guard let url = URL(string: "https://jsonplaceholder.typicode.com/users/\(userId)") else {
+            return
+        }
+        
+        var urlRequest = URLRequest(url: url)
+        
+        urlRequest.httpMethod = "DELETE"
+        
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
+        
+        let (_, responce) = try await URLSession.shared.data(for: urlRequest)
+        
+        guard let responceCode = responce as? HTTPURLResponse else {
+            return
+        }
+        
+        print(responceCode.statusCode)
+        
+    }
 }
