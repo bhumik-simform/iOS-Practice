@@ -5,7 +5,7 @@
 //  Created by Bhumik Poshiya on 03/06/26.
 //
 
-struct User: Codable {
+struct User: Codable, Equatable {
     let id: Int
     var name: String
     var userName: String

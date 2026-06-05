@@ -56,4 +56,26 @@ final class CurdAPISevice {
         return try JSONDecoder().decode(User.self, from: data)
         
     }
+    
+    func updateUser(updatedUser: User) async throws -> User {
+        
+        guard let url = URL(string: "https://jsonplaceholder.typicode.com/users/\(updatedUser.id)") else {
+            return User(id: -1, name: "", userName: "", email: "")
+        }
+        
+        var urlRequest = URLRequest(url: url)
+        
+        urlRequest.httpMethod = "PUT"
+        
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        urlRequest.httpBody = try JSONEncoder().encode(updatedUser)
+        
+        let (data, _) = try await URLSession.shared.data(for: urlRequest)
+        
+        print(try JSONDecoder().decode(User.self, from: data))
+        
+        return try JSONDecoder().decode(User.self, from: data)
+        
+    }
 }

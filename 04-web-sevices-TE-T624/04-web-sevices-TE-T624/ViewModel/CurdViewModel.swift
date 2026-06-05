@@ -45,4 +45,41 @@ class CurdViewModel {
         }
     }
 
+    func editUser(
+        originalUser: User, name: String, userName: String, email: String
+    ) {
+
+        var updatedUser = originalUser
+
+        updatedUser.name = name
+        updatedUser.userName = userName
+        updatedUser.email = email
+
+        if updatedUser == originalUser {
+            print("No changes Lol")
+            return
+        }
+
+        Task {
+
+            do {
+
+                let updatedUser = try await repository.updateUser(
+                    newUser: updatedUser)
+
+                let originalUserIndex = self.userList.firstIndex {
+                    $0.id == updatedUser.id
+                } ?? -1
+                
+                self.userList[originalUserIndex] = updatedUser
+                self.reloadData?()
+
+            } catch let error {
+                print(error)
+            }
+
+        }
+
+    }
+
 }

@@ -19,5 +19,9 @@ final class CurdRepository {
         return try await apiService.createUser(requestModel: request)
     }
     
-    
+    func updateUser(newUser updatedUser: User) async throws -> User {
+     
+        return try await apiService.updateUser(updatedUser: updatedUser)
+        
+    }
 }

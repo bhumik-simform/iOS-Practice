@@ -45,6 +45,7 @@ class CurdViewController: UIViewController {
 }
 
 extension CurdViewController: UITableViewDataSource, UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int)
         -> Int
     {
@@ -65,33 +66,98 @@ extension CurdViewController: UITableViewDataSource, UITableViewDelegate {
         cell.configureCell(with: item)
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let item = viewModel.userList[indexPath.row]
+        showEditUserAlertBox(user: item)
+        
+    }
 
 }
 
 
 extension CurdViewController {
     
-    @IBAction func onClickAddPerson(_ sender: UIBarButtonItem) {
+    @IBAction func onClickAddPerson(_ sender: UIBarButtonItem) { showAddUserAlertBox() }
+}
 
-        guard
-            let targetVC = UIStoryboard(name: "Main", bundle: nil)
-                .instantiateViewController(
-                    withIdentifier: "UsViewController")
-                as? UsViewController
-        else {
-            return
+extension CurdViewController {
+    private func showAddUserAlertBox() {
+        let alertBox = UIAlertController(title: "Add User", message: "Please enter details of new user below.", preferredStyle: .alert)
+        
+        alertBox.addTextField { textField in
+            textField.placeholder = "Name"
+            textField.autocapitalizationType = .words
         }
         
-        targetVC.isModalInPresentation = true
-
-        targetVC.onAddUSer = { [weak self] name, userName, email in
+        alertBox.addTextField { textField in
+            textField.placeholder = "User Name"
+        }
+        
+        alertBox.addTextField { textField in
+            textField.placeholder = "Email Address"
+        }
+        
+        let saveBtn = UIAlertAction(title: "Save", style: .default) { _ in
             
-            self?.viewModel.createUser(name: name, userName: userName, email: email)
+            let name = alertBox.textFields?[0].text ?? ""
+            let userName = alertBox.textFields?[1].text ?? ""
+            let email = alertBox.textFields?[2].text ?? ""
+            
+            self.viewModel.createUser(name: name, userName: userName, email: email)
+            
         }
         
+        let cancelBtn = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
-        let navController = UINavigationController(rootViewController: targetVC)
-        self.present(navController, animated: true)
+        alertBox.addAction(saveBtn)
+        alertBox.addAction(cancelBtn)
+        
+        
+        
+        self.present(alertBox, animated: true)
+    }
+    
+    private func showEditUserAlertBox(user: User) {
+        let alertBox = UIAlertController(title: "Edit User", message: "Please change details of \(user.name) below.", preferredStyle: .alert)
+        
+        alertBox.addTextField { textField in
+            textField.placeholder = "Name"
+            textField.text = user.name
+        }
+        
+        alertBox.addTextField { textField in
+            textField.placeholder = "User Name"
+            textField.text = user.userName
+        }
+        
+        alertBox.addTextField { textField in
+            textField.placeholder = "Email"
+            textField.text = user.email
+        }
+        
+        let saveBtn = UIAlertAction(title: "Save", style: .default) { _ in
+            
+            let name = alertBox.textFields?[0].text ?? ""
+            let userName = alertBox.textFields?[1].text ?? ""
+            let email = alertBox.textFields?[2].text ?? ""
+            
+           
+            
+            
+            self.viewModel.editUser(originalUser: user, name: name, userName: userName, email: email)
+            
+        }
+        
+        let cancelBtn = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alertBox.addAction(saveBtn)
+        alertBox.addAction(cancelBtn)
+        
+        self.present(alertBox, animated: true)
     }
     
 }
