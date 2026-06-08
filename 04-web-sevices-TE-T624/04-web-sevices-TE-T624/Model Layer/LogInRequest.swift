@@ -6,6 +6,11 @@
 //
 
 struct LogInRequest: Encodable {
-    let username: String
+    let userName: String
     let password: String
+    
+    private enum CodingKeys: String, CodingKey {
+        case userName = "username"
+        case password
+    }
 }

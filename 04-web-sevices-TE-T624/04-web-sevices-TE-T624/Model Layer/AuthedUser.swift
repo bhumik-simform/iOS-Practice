@@ -1,11 +1,11 @@
 //
-//  LogInResponce.swift
+//  Untitled.swift
 //  04-web-sevices-TE-T624
 //
 //  Created by Bhumik Poshiya on 08/06/26.
 //
 
-struct LogInResponce: Decodable {
+struct AuthedUser {
     let id: Int
     let userName: String
     let email: String
@@ -13,8 +13,6 @@ struct LogInResponce: Decodable {
     let lastName: String
     let gender: String
     let image: String
-    let accessToken: String
-    let refreshToken: String
     
     private enum CodingKeys: String, CodingKey {
         case id
@@ -24,7 +22,5 @@ struct LogInResponce: Decodable {
         case lastName
         case gender
         case image
-        case accessToken
-        case refreshToken
     }
 }
