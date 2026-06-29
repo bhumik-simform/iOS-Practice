@@ -7,12 +7,14 @@
 
 import UIKit
 
-class LogInViewController: UIViewController {
+final class LogInViewController: UIViewController {
 
+//    MARK: IBOutlets
     @IBOutlet private weak var userNameTextField: UITextField!
     @IBOutlet private weak var passwordTextField: UITextField!
     @IBOutlet private weak var logInBtn: UIButton!
 
+//    MARK: Properties
     private var presenter: LogInPresenter!
 
     private let activityIndicator = UIActivityIndicatorView(style: .large)
