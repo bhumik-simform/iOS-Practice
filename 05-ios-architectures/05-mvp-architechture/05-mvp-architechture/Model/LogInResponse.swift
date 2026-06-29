@@ -6,8 +6,5 @@
 //
 
 struct LogInResponse: Decodable {
-    
     let id: Int
-    let firstName: String
-
 }

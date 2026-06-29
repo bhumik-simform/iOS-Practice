@@ -31,4 +31,18 @@ final class NetworkServices {
         .value
 
     }
+
+    func fetchUserTasks(for userId: Int) async throws -> [UserTask] {
+        
+        let request: [String: Int] = ["userId": userId]
+        
+        let url = URL(string: "\(baseUrl)/todos")!
+        
+        return  try await AF.request(
+            url,
+            method: .get,
+            parameters: request
+        ).validate().serializingDecodable(Todos.self).value.todos
+
+    }
 }

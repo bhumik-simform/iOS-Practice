@@ -179,30 +179,30 @@
             </objects>
             <point key="canvasLocation" x="791.60305343511448" y="-225.35211267605635"/>
         </scene>
-        <!--User Details View Controller-->
+        <!--User Tasks View Controller-->
         <scene sceneID="ys3-cR-2FY">
             <objects>
-                <viewController storyboardIdentifier="UserDetailsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gfd-vd-S1h" customClass="UserDetailsViewController" customModule="_5_mvp_architechture" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UserTasksViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gfd-vd-S1h" customClass="UserTasksViewController" customModule="_5_mvp_architechture" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="k62-Q5-wp4">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OVJ-rP-w6f">
-                                <rect key="frame" x="159.33333333333334" y="408" width="74.666666666666657" height="36"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="5Zb-Ex-fhL">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="MXl-wa-AVk"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="OVJ-rP-w6f" firstAttribute="centerX" secondItem="k62-Q5-wp4" secondAttribute="centerX" id="Hsv-Z3-4cR"/>
-                            <constraint firstItem="OVJ-rP-w6f" firstAttribute="centerY" secondItem="k62-Q5-wp4" secondAttribute="centerY" id="RTC-M3-dg3"/>
+                            <constraint firstItem="5Zb-Ex-fhL" firstAttribute="top" secondItem="MXl-wa-AVk" secondAttribute="top" id="1R8-D4-jfy"/>
+                            <constraint firstItem="5Zb-Ex-fhL" firstAttribute="leading" secondItem="MXl-wa-AVk" secondAttribute="leading" id="BfS-WC-Bzn"/>
+                            <constraint firstItem="MXl-wa-AVk" firstAttribute="trailing" secondItem="5Zb-Ex-fhL" secondAttribute="trailing" id="pz9-BT-de3"/>
+                            <constraint firstItem="MXl-wa-AVk" firstAttribute="bottom" secondItem="5Zb-Ex-fhL" secondAttribute="bottom" id="yDA-qG-g3K"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="firstNameLabel" destination="OVJ-rP-w6f" id="iIw-Jc-hKM"/>
+                        <outlet property="userTasksTableView" destination="5Zb-Ex-fhL" id="uAw-cs-Ziy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yhn-Zh-FHb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

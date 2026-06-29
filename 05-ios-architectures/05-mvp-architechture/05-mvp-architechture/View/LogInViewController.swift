@@ -88,9 +88,6 @@ extension LogInViewController {
 
         let userName = userNameTextField.text ?? ""
         let password = passwordTextField.text ?? ""
-
-        print(userName)
-        print(password)
         
         presenter.login(userName, password)
 
@@ -124,8 +121,8 @@ extension LogInViewController {
         guard
             let destinationVC = UIStoryboard(name: "Main", bundle: nil)
                 .instantiateViewController(
-                    withIdentifier: "UserDetailsViewController")
-                as? UserDetailsViewController
+                    withIdentifier: "UserTasksViewController")
+                as? UserTasksViewController
         else {
             return
         }
