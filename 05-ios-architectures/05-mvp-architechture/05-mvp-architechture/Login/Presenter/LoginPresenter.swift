@@ -5,39 +5,37 @@
 //  Created by Bhumik Poshiya on 26/06/26.
 //
 
-protocol LogInView {
+protocol LoginView: AnyObject {
     
     func startLoading()
     func stopLoading()
     func showError(message errorMessage: String)
-    func navigateHomeScreen(data result: LogInResponse)
+    func onSuccess(data result: LoginResponse)
     
     
 }
 
-class LogInPresenter {
+class LoginPresenter {
 
-    private var view: LogInView!
+    private weak var view: LoginView!
     
-    init(view: LogInView) {
-        
+    init(view: LoginView) {
         self.view = view
-        
     }
 
     func login(_ userName: String, _ password: String) {
         
         view.startLoading()
         
-        let request = LogInRequest(userName: userName, password: password)
+        let request = LoginRequest(userName: userName, password: password)
         
         Task {
             
             do {
-                let loginResponse = try await NetworkServices.apiSerivce.login(request: request)
+                let loginResponse = try await NetworkServices.apiSerivce.login(request: request) //MARK: Staring Network Calling
                 
                 view.stopLoading()
-                view.navigateHomeScreen(data: loginResponse)
+                view.onSuccess(data: loginResponse)
                 
             } catch {
                 view.stopLoading()

@@ -7,21 +7,25 @@
 
 import UIKit
 
-class UserTasksViewController: UIViewController {
+final class UserTasksViewController: UIViewController {
     
-    var userDetails: LogInResponse?
-    
+//    MARK: IBOutlet
+    @IBOutlet private var userTasksTableView: UITableView!
+   
+//    MARK: Properties
     private var presenter: UserTasksPresenter!
     
-    @IBOutlet private var userTasksTableView: UITableView!
+//    MARK: Data
+    var userDetails: LogInResponse?
     
-    private let activityIndicator = UIActivityIndicatorView(style: .large)
+    
+    
+    private lazy var activityIndicator = createActivityIndicator()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         presenter = UserTasksPresenter(self)
-        setUpActivityIndicator()
         setUpTable()
         fetchData()
     }
@@ -36,23 +40,22 @@ extension UserTasksViewController {
         } else {
             showAlert("UserId is not available.")
         }
-        
     }
-    
 }
 
 extension UserTasksViewController: UserTasksView {
-    func startLoding() {
+    
+    func startLoading() {
         userTasksTableView.isHidden = true
         activityIndicator.startAnimating()
     }
     
-    func stopLoding() {
+    func stopLoading() {
         userTasksTableView.isHidden = false
         activityIndicator.stopAnimating()
     }
     
-    func onSucess(data: [UserTask]) {
+    func onSuccess(data: [UserTask]) {
         userTasksTableView.reloadData()
     }
     
@@ -73,23 +76,6 @@ extension UserTasksViewController {
         userTasksTableView.dataSource = self
         userTasksTableView.delegate = self
         
-    }
-    
-    private func setUpActivityIndicator() {
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        activityIndicator.hidesWhenStopped = true
-
-        view.addSubview(activityIndicator)
-
-        NSLayoutConstraint.activate([
-            activityIndicator.centerXAnchor.constraint(
-                equalTo: view.centerXAnchor
-            ),
-
-            activityIndicator.centerYAnchor.constraint(
-                equalTo: view.centerYAnchor
-            ),
-        ])
     }
     
     private func showAlert(_ message: String) {
@@ -113,7 +99,7 @@ extension UserTasksViewController {
 extension UserTasksViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter.getTasksCount()
+        return presenter.numberOfTasks()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -122,9 +108,8 @@ extension UserTasksViewController: UITableViewDataSource, UITableViewDelegate {
             return UITableViewCell()
         }
         
-        let item = presenter.getTaskAt(indexPath.row)
-        
-        cell.configCell(for: item)
+        let item = presenter.task(at: indexPath.row)
+        cell.configure(for: item)
         return cell
     }
 }

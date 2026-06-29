@@ -5,6 +5,6 @@
 //  Created by Bhumik Poshiya on 26/06/26.
 //
 
-struct LogInResponse: Decodable {
+struct LoginResponse: Decodable {
     let id: Int
 }

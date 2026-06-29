@@ -7,56 +7,35 @@
 
 import UIKit
 
-final class LogInViewController: UIViewController {
+final class LoginViewController: UIViewController {
 
 //    MARK: IBOutlets
     @IBOutlet private weak var userNameTextField: UITextField!
     @IBOutlet private weak var passwordTextField: UITextField!
-    @IBOutlet private weak var logInBtn: UIButton!
+    @IBOutlet private weak var loginButton: UIButton!
 
 //    MARK: Properties
-    private var presenter: LogInPresenter!
+    private var presenter: LoginPresenter!
 
-    private let activityIndicator = UIActivityIndicatorView(style: .large)
+//    MARK: UI Element
+    private lazy var activityIndicator = createActivityIndicator()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        presenter = LogInPresenter(view: self)
-        configActivityIndicator()
-        
+        presenter = LoginPresenter(view: self)
+       
     }
 
 }
 
-extension LogInViewController {
-
-    func configActivityIndicator() {
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        activityIndicator.hidesWhenStopped = true
-
-        view.addSubview(activityIndicator)
-
-        NSLayoutConstraint.activate([
-            activityIndicator.centerXAnchor.constraint(
-                equalTo: view.centerXAnchor
-            ),
-
-            activityIndicator.centerYAnchor.constraint(
-                equalTo: view.centerYAnchor
-            ),
-        ])
-    }
-
-}
-
-extension LogInViewController: LogInView {
+extension LoginViewController: LoginView {
 
     func startLoading() {
         DispatchQueue.main.async { [self] in
             userNameTextField.isEnabled = false
             passwordTextField.isEnabled = false
-            logInBtn.isEnabled = false
+            loginButton.isEnabled = false
             activityIndicator.startAnimating()
         }
     }
@@ -66,7 +45,7 @@ extension LogInViewController: LogInView {
         DispatchQueue.main.async { [self] in
             userNameTextField.isEnabled = true
             passwordTextField.isEnabled = true
-            logInBtn.isEnabled = true
+            loginButton.isEnabled = true
             activityIndicator.stopAnimating()
         }
     }
@@ -77,16 +56,16 @@ extension LogInViewController: LogInView {
         }
     }
 
-    func navigateHomeScreen(data result: LogInResponse) {
+    func onSuccess(data result: LoginResponse) {
         DispatchQueue.main.async {
-            self.navigateToUserDetails(result)
+            self.navigateToUserTasks(result)
         }
     }
 }
 
-extension LogInViewController {
+extension LoginViewController {
 
-    @IBAction private func logInBtnTapped(_ sender: UIButton) {
+    @IBAction private func loginButtonTapped(_ sender: UIButton) {
 
         let userName = userNameTextField.text ?? ""
         let password = passwordTextField.text ?? ""
@@ -97,7 +76,7 @@ extension LogInViewController {
 
 }
 
-extension LogInViewController {
+extension LoginViewController {
 
     private func showAlert(_ message: String) {
 
@@ -116,10 +95,10 @@ extension LogInViewController {
     }
 }
 
-extension LogInViewController {
+extension LoginViewController {
 
-    func navigateToUserDetails(_ result: LogInResponse) {
-
+    func navigateToUserTasks(_ result: LoginResponse) {
+        
         guard
             let destinationVC = UIStoryboard(name: "Main", bundle: nil)
                 .instantiateViewController(
@@ -128,19 +107,11 @@ extension LogInViewController {
         else {
             return
         }
-
+        
         destinationVC.userDetails = result
-
-        if var viewControllers = self.navigationController?.viewControllers {
-
-            viewControllers.removeLast()
-
-            viewControllers.append(destinationVC)
-
-            self.navigationController?.setViewControllers(
-                viewControllers, animated: true)
-
-        }
+        
+        self.navigationController?.setViewControllers([destinationVC], animated: true)
+        
     }
 
 }

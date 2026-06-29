@@ -5,7 +5,7 @@
 //  Created by Bhumik Poshiya on 26/06/26.
 //
 
-struct LogInRequest: Encodable {
+struct LoginRequest: Encodable {
     
     let userName:String
     let password: String
@@ -14,5 +14,4 @@ struct LogInRequest: Encodable {
         case userName = "username"
         case password
     }
-    
 }

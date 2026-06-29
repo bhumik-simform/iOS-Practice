@@ -5,8 +5,6 @@
 //  Created by Bhumik Poshiya on 29/06/26.
 //
 
-import UIKit
-
 struct UserTask: Decodable {
 
     let id: Int
@@ -17,14 +15,5 @@ struct UserTask: Decodable {
         case id
         case title = "todo"
         case isCompleted = "completed"
-    }
-    
-
-    func statusInString() -> String {
-        return self.isCompleted ? "Status: Completed" : "Status: Incompleted"
-    }
-    
-    func setBackGroundColour() -> UIColor {
-        return self.isCompleted ? UIColor.green : UIColor.red
     }
 }

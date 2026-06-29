@@ -44,8 +44,10 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="taskStatus" destination="Grr-vk-ogW" id="1KF-7x-ZYx"/>
+                <outlet property="taskStatusLabel" destination="Grr-vk-ogW" id="ETq-Nn-vsV"/>
                 <outlet property="taskTableViewCell" destination="H2p-sc-9uM" id="niR-mm-mrw"/>
                 <outlet property="taskTitle" destination="hmg-K1-x9v" id="Ogv-AP-A7w"/>
+                <outlet property="taskTitleLabel" destination="hmg-K1-x9v" id="q8F-EL-FJw"/>
             </connections>
             <point key="canvasLocation" x="17" y="-47"/>
         </tableViewCell>

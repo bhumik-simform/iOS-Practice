@@ -5,35 +5,34 @@
 //  Created by Bhumik Poshiya on 29/06/26.
 //
 
-protocol UserTasksView {
-
-    func startLoding()
-    func stopLoding()
-    func onSucess(data: [UserTask])
+protocol UserTasksView: AnyObject {
+    func startLoading()
+    func stopLoading()
+    func onSuccess(data: [UserTask])
     func onError(message: String)
 }
 
-class UserTasksPresenter {
+final class UserTasksPresenter {
 
     private var userTasks = [UserTask]()
 
-    private var view: UserTasksView!
+    private weak var view: UserTasksView!
 
     init(_ view: UserTasksView) {
         self.view = view
     }
 
-    func getTasksCount() -> Int {
+    func numberOfTasks() -> Int {
         return userTasks.count
     }
 
-    func getTaskAt(_ position: Int) -> UserTask {
+    func task(at position: Int) -> UserTask {
         return userTasks[position]
     }
 
     func fetchTasks(for userId: Int) {
 
-        view.startLoding()
+        view.startLoading()
 
         Task {
 
@@ -41,13 +40,13 @@ class UserTasksPresenter {
                 userTasks = try await NetworkServices.apiSerivce.fetchUserTasks(for: userId)
 
                 await MainActor.run {
-                    view.stopLoding()
-                    view.onSucess(data: userTasks)
+                    view.stopLoading()
+                    view.onSuccess(data: userTasks)
                 }
             } catch {
                 
                 await MainActor.run {
-                    view.stopLoding()
+                    view.stopLoading()
                     view.onError(message: error.localizedDescription)
                 }
             }

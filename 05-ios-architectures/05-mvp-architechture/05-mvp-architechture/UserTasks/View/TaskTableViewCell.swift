@@ -7,10 +7,10 @@
 
 import UIKit
 
-class TaskTableViewCell: UITableViewCell {
+final class TaskTableViewCell: UITableViewCell {
     
-    @IBOutlet private var taskTitle: UILabel!
-    @IBOutlet private var taskStatus: UILabel!
+    @IBOutlet private var taskTitleLabel: UILabel!
+    @IBOutlet private var taskStatusLabel: UILabel!
     @IBOutlet weak var taskTableViewCell: UIView!
     
     override func awakeFromNib() {
@@ -23,11 +23,11 @@ class TaskTableViewCell: UITableViewCell {
     }
     
     
-    func configCell(for item: UserTask) {
+    func configure(for item: UserTask) {
         
-        taskTitle.text = item.title
-        taskStatus.text = item.statusInString()
-        taskTableViewCell.backgroundColor = item.setBackGroundColour()
+        taskTitleLabel.text = item.title
+        taskStatusLabel.text = item.isCompleted ? "Status: Completed" : "Status: Incompleted"
+        taskTableViewCell.backgroundColor = item.isCompleted ? .green : .red
         
     }
 }
