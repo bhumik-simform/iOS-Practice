@@ -17,4 +17,9 @@ final class AppRepository {
     func login(_ request: LoginRequest) async throws -> LoginResponse {
         try await networkService.login(request)
     }
+    
+    func fetchUserTasks(for userId: Int) async throws -> [UserTask] {
+        try await networkService.fetchTasks(for: userId)
+    }
+    
 }

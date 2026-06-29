@@ -23,4 +23,17 @@ final class NetworkService {
         .serializingDecodable(LoginResponse.self)
         .value
     }
+
+    func fetchTasks(for userId: Int) async throws -> [UserTask] {
+
+        let url = "https://dummyjson.com/todos"
+
+        let request: [String: Int] = ["userId": userId]
+
+        return try await AF.request(
+            url,
+            method: .get,
+            parameters: request
+        ).validate().serializingDecodable(Todos.self).value.todos
+    }
 }
