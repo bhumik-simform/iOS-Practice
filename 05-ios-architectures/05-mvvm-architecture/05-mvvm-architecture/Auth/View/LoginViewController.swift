@@ -39,7 +39,7 @@ extension LoginViewController {
                 case .idle: print("Idle State")
                 case .loading: self?.isLoadingState(true)
                 case .onSuccess(let data):
-                    self?.navigateToUserTasks(with: data)
+                    self?.navigateToMainTabBar(with: data)
                 case .onError(let message): self?.showAlert(with: message)
 
                 }
@@ -71,23 +71,20 @@ extension LoginViewController {
 
 extension LoginViewController {
 
-    private func navigateToUserTasks(with result: LoginResponse) {
+    private func navigateToMainTabBar(with result: LoginResponse) {
         guard
-            let destinationVC = UIStoryboard(name: "Main", bundle: nil)
+            let mainTabBar = UIStoryboard(name: "Main", bundle: nil)
                 .instantiateViewController(
-                    withIdentifier: "UserTasksViewController")
-                as? UserTasksViewController
+                    withIdentifier: "UserTabBarController")
+                as? UserTabBarController
         else {
             return
         }
-
-        destinationVC.userId = result.userId
-
-        self.navigationController?.setViewControllers(
-            [destinationVC], animated: true
-        )
+        
+        mainTabBar.userId = result.userId
+        
+        navigationController?.setViewControllers([mainTabBar], animated: true)
     }
-
 }
 
 extension LoginViewController {
