@@ -1,0 +1,65 @@
+//
+//  POSTRequest.txt
+//  04-web-sevices-TE-T624
+//
+//  Created by Bhumik Poshiya on 04/06/26.
+//
+
+
+    // 1. The Address
+    let url = URL(string: "https://jsonplaceholder.typicode.com/users")!
+    
+    // 2. The Package Configuration
+    // We create a mutable URLRequest so we can change its settings.
+    var urlRequest = URLRequest(url: url)
+    
+    // 3. The Delivery Method
+    // Tell the server "I am sending data, not just asking for it."
+    urlRequest.httpMethod = "POST"
+    
+    // 4. The Label (Headers)
+    // Servers receive a lot of garbage. This header explicitly tells
+    // the server: "The body of this request is formatted as JSON."
+    urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+    
+    // 5. Boxing the Items (The Body)
+    // We use JSONEncoder to convert your Swift struct into raw JSON Data.
+    // If it fails to encode, it throws an error.
+    urlRequest.httpBody = try JSONEncoder().encode(requestModel)
+    
+    // 6. Handing it to the Post Office
+    // We use 'await' because network calls take time. The app will wait here
+    // until the server replies with (data, response).
+    let (data, _) = try await URLSession.shared.data(for: urlRequest)
+    
+    // 7. Opening the Receipt
+    // The server sends back the created user as confirmation. We decode it.
+    return try JSONDecoder().decode(User.self, from: data)
+
+
+Feedback
+Things keep in mind when writing a POST request
+When you are writing the code for a POST request, these are the critical pieces you must always double-check:
+
+The URL and Endpoint: Ensure you are hitting the correct address. A typo here means the request never even reaches the server.
+
+The HTTP Method: URLRequest defaults to a GET request. You must explicitly set urlRequest.httpMethod = "POST".
+
+The Headers (The Metadata): You must tell the server how to read the body. If you are sending JSON, you absolutely need urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type"). If the endpoint requires you to be logged in (like posting a tweet on Twitter or a photo on Instagram), you will also need an Authorization header with a security token.
+
+The HTTP Body: This is the actual data payload. It must be encoded perfectly to match what the server backend expects. If the server expects an integer for an ID but you send a string, it will reject the request.
+
+Background Execution: Network calls take an unpredictable amount of time. You must never block the main thread, or your app will freeze. Using async/await or background URLSession tasks handles this for you.
+
+Reverse KT: Deep Dive Concepts
+During a Reverse KT, a senior developer will try to poke holes in your pipeline to see how deep your knowledge goes. Be prepared to discuss these concepts:
+
+Idempotency (POST vs. PUT): A senior will ask, "What happens if a user impatiently taps the 'Submit' button three times really fast?" You need to explain that POST is not idempotent. That means sending the exact same POST request three times will create three separate users on the server. (Conversely, a PUT request is idempotent; sending it three times just updates the same resource three times with the same data).
+
+HTTP Status Codes: A junior developer only checks if error == nil. A mid-level developer checks the response code. You should know that a 200 means "OK", a 201 means "Created" (very common for successful POSTs), a 400 means your app sent bad data (Bad Request), a 401 means you aren't logged in (Unauthorized), and a 500 means the server crashed.
+
+Codable vs. Encodable vs. Decodable: Be ready to explain why you used Encodable for the data going up, but Decodable for the data coming back. Codable is just a typealias that combines both, but separating them when you only need one direction is considered a best practice for clean architecture.
+
+Error Handling in the Pipeline: What happens if the JSON mapping fails? What happens if the internet drops? You need to explain how your do/catch blocks in the APIService catch the error, and how your Result type or throws keyword propagates that error all the way back up to the ViewModel so the ViewController can show an alert box to the user.
+
+Memory Management (Retain Cycles): If you are using closures (like the completion handlers in your older functions), a senior will ask why you used [weak self]. You must be able to explain that it prevents a retain cycle, ensuring the view controller can be safely destroyed from memory if the user navigates away before the network call finishes.
