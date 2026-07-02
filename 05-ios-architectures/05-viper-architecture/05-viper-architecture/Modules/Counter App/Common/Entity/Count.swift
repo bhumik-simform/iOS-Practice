@@ -8,11 +8,10 @@
 struct Count {
     let value: Int
     let colour: CountColor
-    
-    enum CountColor {
-        case red
-        case black
-        case blue
-        case green
-    }
+}
+enum CountColor {
+    case red
+    case black
+    case blue
+    case green
 }
