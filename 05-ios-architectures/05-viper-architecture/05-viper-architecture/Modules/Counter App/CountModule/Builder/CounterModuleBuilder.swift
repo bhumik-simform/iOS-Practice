@@ -34,6 +34,8 @@ final class CounterModuleBuilder {
         
         interactor.presenter = presenter
         
+        router.viewController = view
+        
         return view
     }
 }

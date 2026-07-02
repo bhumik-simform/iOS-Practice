@@ -17,6 +17,7 @@ protocol CounterPresenterProtocol {
     func incrementTapped()
     func decrementTapped()
     func resetTapped()
+    func colorPickerTapped()
 }
 
 // Purpose: Counter, Where will Implemenet: In Interator, Presenter -> Interator
@@ -38,5 +39,5 @@ protocol CounterViewProtocol: AnyObject {
 
 // Purpose: Counter Where will Implemenet: In Router, Presenter -> Router
 protocol CounterRouterProtocol {
-    
+    func navigateToColorPicker()
 }

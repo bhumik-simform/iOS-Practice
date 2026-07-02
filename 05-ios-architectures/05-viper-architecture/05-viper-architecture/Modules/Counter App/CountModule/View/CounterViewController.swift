@@ -34,6 +34,10 @@ extension CounterViewController {
         presenter?.resetTapped()
     }
     
+    @IBAction private func colorPickerButtonTapped(_ sender: UIButton) {
+        presenter?.colorPickerTapped()
+    }
+    
 }
 
 extension CounterViewController: CounterViewProtocol {

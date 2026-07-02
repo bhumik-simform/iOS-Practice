@@ -30,6 +30,10 @@ extension CounterPresenter: CounterPresenterProtocol {
     func resetTapped() {
         interactor?.reset()
     }
+    
+    func colorPickerTapped() {
+        router?.navigateToColorPicker()
+    }
 }
 
 extension CounterPresenter: CounterInteratorOutputProtocol {
