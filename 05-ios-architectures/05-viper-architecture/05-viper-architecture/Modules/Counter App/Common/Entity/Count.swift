@@ -6,7 +6,13 @@
 //
 
 struct Count {
+    let value: Int
+    let colour: CountColor
     
-    let count: Int
-    
+    enum CountColor {
+        case red
+        case black
+        case blue
+        case green
+    }
 }
