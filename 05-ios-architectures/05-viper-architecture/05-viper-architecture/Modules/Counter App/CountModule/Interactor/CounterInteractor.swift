@@ -15,12 +15,22 @@ final class CounterInteractor {
 extension CounterInteractor: CounterInteractorProtocol {
     func increment() {
         count += 1
-        presenter?.didUpdateCount(count)
+        if count > 10 {
+            count -= 1
+            presenter?.didReachedMaxLimit()
+        } else {
+            presenter?.didUpdateCount(count)
+        }
     }
     
     func decrement() {
         count -= 1
-        presenter?.didUpdateCount(count)
+        if count < -10 {
+            count -= 1
+            presenter?.didReachedMinLimit()
+        } else {
+            presenter?.didUpdateCount(count)
+        }
     }
     
     func reset() {

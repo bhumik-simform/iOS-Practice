@@ -37,6 +37,14 @@ extension CounterPresenter: CounterPresenterProtocol {
 }
 
 extension CounterPresenter: CounterInteratorOutputProtocol {
+    func didReachedMaxLimit() {
+        view?.disabledIncButton()
+    }
+    
+    func didReachedMinLimit() {
+        view?.disabledDecButton()
+    }
+    
     func didUpdateCount(_ value: Int) {
         view?.updateCount("Count: \(value)")
     }

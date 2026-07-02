@@ -30,11 +30,15 @@ protocol CounterInteractorProtocol {
 // Purpose: Counter, Where will Implemenet: In Presenter, Interator -> Presenter
 protocol CounterInteratorOutputProtocol: AnyObject {
     func didUpdateCount(_ value: Int)
+    func didReachedMaxLimit()
+    func didReachedMinLimit()
 }
 
 // Purpose: Counter, Where will Implemenet: In View, Presenter -> View
 protocol CounterViewProtocol: AnyObject {
     func updateCount(_ value: String)
+    func disabledIncButton()
+    func disabledDecButton()
 }
 
 // Purpose: Counter Where will Implemenet: In Router, Presenter -> Router
