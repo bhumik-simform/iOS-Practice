@@ -9,10 +9,10 @@ import UIKit
 
 final class ColorPickerModuleBuilder {
 
-    static func build() -> UIViewController {
+    static func build(routerDelegate: ColorPickerRouterDelegate) -> UIViewController {
 
         guard
-            let view = UIStoryboard(name: "Main", bundle: nil)
+            let view = UIStoryboard(name: "CounterApp", bundle: nil)
                 .instantiateViewController(
                     withIdentifier: "ColorPickerViewController")
                 as? ColorPickerViewController
@@ -25,17 +25,17 @@ final class ColorPickerModuleBuilder {
         let interactor = ColorPickerInteractor()
 
         let router = ColorPickerRouter()
-        
+
         view.presenter = presenter
-        
+
         presenter.view = view
         presenter.interactor = interactor
         presenter.router = router
-        
+
         interactor.presenter = presenter
-        
-        router.viewController = view
-        
+
+        router.delegate = routerDelegate
+
         return view
     }
 }

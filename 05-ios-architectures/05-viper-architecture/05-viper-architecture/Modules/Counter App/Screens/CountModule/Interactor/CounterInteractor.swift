@@ -7,34 +7,33 @@
 
 final class CounterInteractor {
     
-    private var count = 0
     weak var presenter: CounterInteratorOutputProtocol?
     
 }
 
 extension CounterInteractor: CounterInteractorProtocol {
     func increment() {
-        count += 1
-        if count > 10 {
-            count -= 1
+        Count.shared.value += 1
+        if Count.shared.value > 10 {
+            Count.shared.value -= 1
             presenter?.didReachedMaxLimit()
         } else {
-            presenter?.didUpdateCount(count)
+            presenter?.didUpdateCount(Count.shared.value)
         }
     }
     
     func decrement() {
-        count -= 1
-        if count < -10 {
-            count -= 1
+        Count.shared.value -= 1
+        if Count.shared.value < -10 {
+            Count.shared.value -= 1
             presenter?.didReachedMinLimit()
         } else {
-            presenter?.didUpdateCount(count)
+            presenter?.didUpdateCount(Count.shared.value)
         }
     }
     
     func reset() {
-        count = 0
-        presenter?.didUpdateCount(count)
+        Count.shared.value = 0
+        presenter?.didUpdateCount(Count.shared.value)
     }
 }

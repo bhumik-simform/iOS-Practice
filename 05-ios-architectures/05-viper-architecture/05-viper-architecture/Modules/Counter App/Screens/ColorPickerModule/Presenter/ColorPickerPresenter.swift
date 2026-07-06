@@ -45,7 +45,7 @@ extension ColorPickerPresenter: ColorPickerPresenterProtocol {
 
 extension ColorPickerPresenter: ColorPickerInteractorOutputProtocol {
     
-    func didColor(_ value: CountColor) {
+    func didColor(_ value: Count.CountColor) {
         switch(value) {
         case .red: view?.updateColor(.red)
         case .black: view?.updateColor(.black)

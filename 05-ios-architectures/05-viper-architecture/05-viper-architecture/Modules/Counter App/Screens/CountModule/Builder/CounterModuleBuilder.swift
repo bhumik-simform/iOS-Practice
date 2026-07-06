@@ -9,10 +9,10 @@ import UIKit
 
 final class CounterModuleBuilder {
 
-    static func build() -> UIViewController {
+    static func build(routerDelegate: CounterRouterDelegate) -> UIViewController {
 
         guard
-            let view = UIStoryboard(name: "Main", bundle: nil)
+            let view = UIStoryboard(name: "CounterApp", bundle: nil)
                 .instantiateViewController(
                     withIdentifier: "CounterViewController")
                 as? CounterViewController
@@ -25,17 +25,17 @@ final class CounterModuleBuilder {
         let interactor = CounterInteractor()
 
         let router = CounterRouter()
-        
+
         view.presenter = presenter
-        
+
         presenter.view = view
         presenter.interactor = interactor
         presenter.router = router
-        
+
         interactor.presenter = presenter
-        
-        router.viewController = view
-        
+
+        router.delegate = routerDelegate
+
         return view
     }
 }

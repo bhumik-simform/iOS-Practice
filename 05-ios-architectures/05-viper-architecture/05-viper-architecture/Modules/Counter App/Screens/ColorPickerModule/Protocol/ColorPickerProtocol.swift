@@ -33,7 +33,7 @@ protocol ColorPickerInteractorProtocol {
 
 // Purpose: ColorPick, Where will Implemenet: In Presenter, Interator -> Presenter
 protocol ColorPickerInteractorOutputProtocol: AnyObject {
-    func didColor(_ value: CountColor)
+    func didColor(_ value: Count.CountColor)
 }
 
 // Purpose: ColorPick, Where will Implemenet: In View, Presenter -> View
@@ -44,4 +44,9 @@ protocol ColorPickerViewProtocol: AnyObject {
 // Purpose: ColorPick Where will Implemenet: In Router, Presenter -> Router
 protocol ColorPickerRouterProtocol {
     func goBackToCounter()
+}
+
+// Purpose: ColorPick, Where will Implemenet: In Coordinator, Router -> Coordinator
+protocol ColorPickerRouterDelegate: AnyObject {
+    func routeBackToCounter()
 }

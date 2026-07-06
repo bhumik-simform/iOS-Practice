@@ -9,28 +9,26 @@ final class ColorPickerInteractor {
     
     weak var presenter: ColorPickerInteractorOutputProtocol?
     
-    private var labelColor: CountColor = .black
-    
 }
 
 extension ColorPickerInteractor: ColorPickerInteractorProtocol {
     func changeColorToRed() {
-        labelColor = .red
-        presenter?.didColor(.red)
+        Count.shared.colour = .red
+        presenter?.didColor(Count.shared.colour)
     }
     
     func changeColorToBlack() {
-        labelColor = .black
-        presenter?.didColor(.black)
+        Count.shared.colour = .black
+        presenter?.didColor(Count.shared.colour)
     }
     
     func changeColorToBlue() {
-        labelColor = .blue
-        presenter?.didColor(.blue)
+        Count.shared.colour = .blue
+        presenter?.didColor(Count.shared.colour)
     }
     
     func changeColorToGreen() {
-        labelColor = .green
-        presenter?.didColor(.green)
+        Count.shared.colour = .green
+        presenter?.didColor(Count.shared.colour)
     }
 }

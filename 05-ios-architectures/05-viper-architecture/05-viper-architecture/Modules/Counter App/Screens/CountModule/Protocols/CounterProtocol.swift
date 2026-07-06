@@ -45,3 +45,9 @@ protocol CounterViewProtocol: AnyObject {
 protocol CounterRouterProtocol {
     func navigateToColorPicker()
 }
+
+// Purpose: Counter, Where will Implemenet: In Coordinator, Router -> Coordinator
+// Router expresses INTENT here; only the Coordinator actually touches UINavigationController.
+protocol CounterRouterDelegate: AnyObject {
+    func routeToColorPicker()
+}

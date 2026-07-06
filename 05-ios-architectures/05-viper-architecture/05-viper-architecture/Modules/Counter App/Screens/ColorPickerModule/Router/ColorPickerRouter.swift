@@ -7,12 +7,10 @@
 import UIKit
 
 final class ColorPickerRouter: ColorPickerRouterProtocol {
-    
-    weak var viewController: UIViewController?
-    
+
+    weak var delegate: ColorPickerRouterDelegate?
+
     func goBackToCounter() {
-        
-        self.viewController?.navigationController?.popViewController(animated: true)
-        
+        delegate?.routeBackToCounter()
     }
 }
