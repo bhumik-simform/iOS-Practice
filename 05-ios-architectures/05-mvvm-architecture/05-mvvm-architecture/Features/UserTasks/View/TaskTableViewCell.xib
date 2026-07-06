@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="770" id="KGk-i7-Jjw" customClass="TaskTableViewCell" customModule="_5_mvvm_architecture" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="1487" height="770"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="1487" height="770"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="51Q-Wu-EoO">
+                        <rect key="frame" x="16" y="16" width="1455" height="738"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sNd-Qh-Lgh">
+                                <rect key="frame" x="0.0" y="0.0" width="1417" height="20.333333333333332"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Label">
+                                        <attributes>
+                                            <font key="NSFont" metaFont="system" size="17"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" image="circ" translatesAutoresizingMaskIntoConstraints="NO" id="YH8-po-zmX">
+                                <rect key="frame" x="1425" y="0.0" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="8EK-qd-KY4"/>
+                                    <constraint firstAttribute="width" secondItem="YH8-po-zmX" secondAttribute="height" multiplier="1:1" id="8Ty-QF-9Xl"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="51Q-Wu-EoO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="WEw-DC-XrB"/>
+                    <constraint firstAttribute="bottom" secondItem="51Q-Wu-EoO" secondAttribute="bottom" constant="16" id="i0n-N5-3b4"/>
+                    <constraint firstAttribute="trailing" secondItem="51Q-Wu-EoO" secondAttribute="trailing" constant="16" id="iV8-AL-9JK"/>
+                    <constraint firstItem="51Q-Wu-EoO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="oEc-6N-Qoi"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="checkCircleStatusImage" destination="YH8-po-zmX" id="2r8-6a-LLk"/>
+                <outlet property="taskTitleLabel" destination="sNd-Qh-Lgh" id="OYS-Ba-7to"/>
+            </connections>
+            <point key="canvasLocation" x="880" y="683"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="circ" width="128" height="128"/>
+    </resources>
+</document>
